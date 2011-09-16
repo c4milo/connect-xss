@@ -4,8 +4,7 @@ module.exports = function xss(options) {
 		var params = req.params;
 		var query = req.query;
 		var headers = req.headers;
-        //TODO filtering cookies
-
+		//TODO filtering cookies
 		//headers filtering
 		if (headers) {
 			for (var i in headers) {
@@ -24,10 +23,10 @@ module.exports = function xss(options) {
 
 		//query filtering
 		if (query) {
-            for (var i in query) {
-                query[i] = xssfilter(query[i]);
-            }
-            req.query = query;
+			for (var i in query) {
+				query[i] = xssfilter(query[i]);
+			}
+			req.query = query;
 		}
 
 		//body filtering
@@ -47,10 +46,10 @@ module.exports = function xss(options) {
 
 			req.removeListener('end', onEnd);
 			req.emit('end');
-            next();
+			next();
 		});
 
 		res.setHeader('X-XSS-Protection', 1);
-    };
+	};
 }
 
